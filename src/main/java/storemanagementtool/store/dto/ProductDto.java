@@ -1,12 +1,15 @@
 package storemanagementtool.store.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Builder
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductDto {
     private Long id;
     private String name;
-    private double price;
+    private Double price;
+    private Integer quantity;
 }

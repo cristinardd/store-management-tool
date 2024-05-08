@@ -11,6 +11,7 @@ public class ProductMapper {
                 .id(product.getId())
                 .name(product.getName())
                 .price(product.getPrice())
+                .quantity(product.getQuantity())
                 .build();
     }
 
@@ -19,6 +20,7 @@ public class ProductMapper {
                 .id(productDto.getId())
                 .name(productDto.getName())
                 .price(productDto.getPrice())
+                .quantity(productDto.getQuantity())
                 .build();
     }
 }

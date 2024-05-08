@@ -1,12 +1,14 @@
 package storemanagementtool.store.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Entity(name = "product")
 @Builder
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Entity(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,4 +18,5 @@ public class Product {
     private String name;
 
     private Double price;
+    private Integer quantity;
 }
