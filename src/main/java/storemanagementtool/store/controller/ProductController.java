@@ -25,4 +25,19 @@ public class ProductController {
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
+
+    @PostMapping
+    public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto productDto) {
+        return ResponseEntity.ok(productService.addProduct(productDto));
+    }
+
+    @PatchMapping("/{id}/price")
+    public ResponseEntity<ProductDto> updateProductPrice(@PathVariable Long id, @RequestParam double price) {
+        return ResponseEntity.ok(productService.updateProductPrice(id, price));
+    }
+
+    @PatchMapping("/{id}/buy")
+    public ResponseEntity<?> buyProduct(@PathVariable Long id, @RequestParam int quantity) {
+        return ResponseEntity.ok(productService.buyProduct(id, quantity));
+    }
 }
