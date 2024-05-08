@@ -1,0 +1,7 @@
+package storemanagementtool.store.exception.custom;
+
+public class ProductOutOfStockException extends RuntimeException {
+    public ProductOutOfStockException(String message) {
+        super(message);
+    }
+}

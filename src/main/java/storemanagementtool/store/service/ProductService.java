@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import storemanagementtool.store.dto.ProductDto;
+import storemanagementtool.store.exception.custom.ProductOutOfStockException;
 import storemanagementtool.store.mapper.ProductMapper;
 import storemanagementtool.store.model.Product;
 import storemanagementtool.store.repository.ProductRepository;
@@ -52,10 +53,12 @@ public class ProductService {
         return productMapper.convertToDto(productRepository.save(product));
     }
 
-    @Transactional(readOnly = true)
     public Product buyProduct(Long productId, int quantityToBuy) {
         Product product = productRepository.findById(productId).orElseThrow(() -> new NoSuchElementException("Product with id " + productId + " not found."));
         int newQuantity = product.getQuantity() - quantityToBuy;
+        if (newQuantity < 0) {
+            throw new ProductOutOfStockException("Product out of stock");
+        }
         product.setQuantity(newQuantity);
         return productRepository.save(product);
     }
