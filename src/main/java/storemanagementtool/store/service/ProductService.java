@@ -53,13 +53,14 @@ public class ProductService {
         return productMapper.convertToDto(productRepository.save(product));
     }
 
-    public Product buyProduct(Long productId, int quantityToBuy) {
+    @Transactional(propagation = Propagation.REQUIRED)
+    public ProductDto buyProduct(Long productId, int quantityToBuy) {
         Product product = productRepository.findById(productId).orElseThrow(() -> new NoSuchElementException("Product with id " + productId + " not found."));
         int newQuantity = product.getQuantity() - quantityToBuy;
         if (newQuantity < 0) {
             throw new ProductOutOfStockException("Product out of stock");
         }
         product.setQuantity(newQuantity);
-        return productRepository.save(product);
+        return productMapper.convertToDto(productRepository.save(product));
     }
 }

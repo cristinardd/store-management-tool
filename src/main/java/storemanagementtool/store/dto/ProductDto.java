@@ -3,8 +3,7 @@ package storemanagementtool.store.dto;
 import lombok.*;
 
 @Builder
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductDto {
