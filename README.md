@@ -102,28 +102,3 @@ Response:
   "quantity": 100
 }
 ```
-
-#### Buying a Product
-To buy a product, the user must be authenticated and authorized as ADMIN. This endpoint decrements the stock of a product by a specified quantity.
-
-**Request:**
-```http
-PATCH /api/v1/product/{id}/buy
-Authorization: Bearer <JWT_Token>
-Content-Type: application/json
-Params: id=1, quantity=1
-
-Response:
-{
-  "id": 1,
-  "name": "New Product",
-  "price": 19.99,
-  "quantity": 99
-}
-
-Out of Stock Response:
-{
-  "error": "Product out of stock"
-}
-
-```
